@@ -21,7 +21,8 @@ public class crudDemo {
         try {
             //createAndSaveSomeObject();
             //displayObjectWithId(1);
-            displayObjectWithHQLQuery("Megahard");
+            //displayObjectWithHQLQuery("Megahard");
+            deleteObjectWithId(1);
 
         }
         finally {
@@ -61,6 +62,15 @@ public class crudDemo {
         for (Employee employee : employees) {
             System.out.println(employee);
         }
+    }
+
+    private static void deleteObjectWithId(int id) {
+        session.beginTransaction();
+        Employee employee = session.get(Employee.class, id);
+        System.out.println("\nDeleting employee: \n" + employee);
+        session.delete(employee);
+        session.getTransaction().commit();
+        System.out.println("Done.");
     }
 
 }
