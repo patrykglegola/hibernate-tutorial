@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import java.util.List;
+
 public class crudDemo {
 
     private static Session session;
@@ -18,7 +20,8 @@ public class crudDemo {
         session = sessionFactory.getCurrentSession();
         try {
             //createAndSaveSomeObject();
-            displayObjectWithId(1);
+            //displayObjectWithId(1);
+            displayObjectWithHQLQuery("Megahard");
 
         }
         finally {
@@ -42,6 +45,22 @@ public class crudDemo {
         Employee readEmployee = session.get(Employee.class, id);
         System.out.println("\nEmployee from database with id " + id + ": \n" + readEmployee);
         session.getTransaction().commit();
+    }
+
+    private static void displayObjectWithHQLQuery(String companyName) {
+        session.beginTransaction();
+        System.out.println("\n");
+        List<Employee> employees = session
+                .createQuery("from Employee e where e.company='" + companyName + "'").getResultList();
+        System.out.println("\nList of employees whose company name is " + companyName + ": ");
+        display(employees);
+        session.getTransaction().commit();
+    }
+
+    private static void display(List<Employee> employees) {
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
     }
 
 }
