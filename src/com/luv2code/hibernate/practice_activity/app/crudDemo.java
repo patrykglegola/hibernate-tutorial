@@ -17,12 +17,23 @@ public class crudDemo {
         Session session = sessionFactory.getCurrentSession();
         try {
 
-            // write code here
-
+            createAndSaveSomeObject(session);
+            
         }
         finally {
             sessionFactory.close();
         }
 
     }
+
+    private static void createAndSaveSomeObject(Session session) {
+        Employee employee1 = new Employee("Adam", "Smith", "Pear");
+        Employee employee2 = new Employee("Michael", "Roberts", "Megahard");
+
+        session.beginTransaction();
+        session.save(employee1);
+        session.save(employee2);
+        session.getTransaction().commit();
+    }
+
 }

@@ -1,15 +1,13 @@
 package com.luv2code.hibernate.practice_activity.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name = "Employee")
+@Table(name = "employee")
 public class Employee {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -21,6 +19,9 @@ public class Employee {
 
     @Column(name = "company")
     private String company;
+
+    public Employee() {
+    }
 
     public Employee(String firstName, String lastName, String company) {
         this.firstName = firstName;
