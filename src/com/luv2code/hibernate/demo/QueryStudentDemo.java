@@ -31,14 +31,14 @@ public class QueryStudentDemo {
             // display the students
             display(students);
 
-            // quety students: lastName='Doe'
+            // query students: lastName='Doe'
             students = session.createQuery("from Student s where s.lastName='Doe'").getResultList();
 
             // display the students
             System.out.println("\n\nStudents who have last name of Doe: ");
             display(students);
 
-            // quety students: lastName='Doe' OR firstName='Daffy'
+            // query students: lastName='Doe' OR firstName='Daffy'
             students = session.createQuery("from Student s where " +
                     "s.lastName='Doe' OR s.firstName='Daffy'").getResultList();
 
@@ -46,8 +46,8 @@ public class QueryStudentDemo {
             System.out.println("\n\nStudents who have last name of Doe or first name Duffy: ");
             display(students);
 
-            // quety students: lastName='Doe' OR firstName='Daffy'
-            students = session.createQuery("from Student s where s.email LIKE '%gmail.com'").getResultList();
+            // query students: lastName='Doe' OR firstName='Daffy'
+            students = session.createQuery("from Student s where s.email LIKE '%luv2code.com'").getResultList();
 
             // display the students
             System.out.println("\n\nStudents who email ends with luv2code.com: ");
